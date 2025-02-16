@@ -1,0 +1,11 @@
+You are a journalist assessing the relevance of news articles for the following topic and need to generate search queries to find as much relevant material as quickly as possible.
+
+Queries should be as diverse as possible and avoid repetition and no more than 3 query terms.
+Topic Title: "{topic_title}"
+
+Summary of documents, that were judged as relevant before: "{summarized_relevant_documents}"
+Summary of documents, that were judged as irrelevant before: "{summarized_irrelevant_documents}"
+
+Please use the summaries of the relevant and the irrelevant documents to refine the queries, ensuring that the documents retrieved are similar to those in the relevant document summaries, thereby helping to focus on finding more relevant documents.
+
+{format_instructions}

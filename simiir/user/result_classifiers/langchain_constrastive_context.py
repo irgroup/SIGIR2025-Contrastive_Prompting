@@ -1,0 +1,92 @@
+#Authors: Adam Roegiest and Leif Azzopardi
+#Date:   2024-04-05
+
+from simiir.user.result_classifiers.base import BaseTextClassifier
+from simiir.user.utils.langchain_wrapper import LangChainWrapper
+from simiir.utils.tidy import clean_html
+from langchain_core.prompts import PromptTemplate
+from langchain.output_parsers import ResponseSchema, StructuredOutputParser
+
+import logging
+log = logging.getLogger('result_classifier.LangChainTextClassifier')
+
+
+snippet_response_schema = [
+            ResponseSchema(name="relevant", description="Is this result snippet relevant to the topic? True or False.", type="boolean"),
+            ResponseSchema(name="topic", description="Is this result snippet about the subject matter in the topic description? True or False.", type="boolean")
+            ]
+
+document_response_schema = [
+            ResponseSchema(name="relevant", description="Is this document relevant to the topic? True or False.", type="boolean"),
+            ResponseSchema(name="topic", description="Is this document about the subject matter in the topic? True or False.", type="boolean"),
+            ResponseSchema(name="explain", description="Summarize the information from the document that is relevant to the topic description and the criteria. Be specific and succint but mention all relevant entities.")
+            ]
+
+result_schema_dict = { "SnippetResponse":snippet_response_schema, "DocumentResponse":document_response_schema}
+
+class LangChainTextClassifier_based_on_contrastive_Context(BaseTextClassifier):
+    """
+    Represents the use of a LangChain-based LLM as a result classifier.
+    Functions for both documents and snippets by setting an appropriate result-type.
+
+    Prompts have four available variables to be used: the topic title ({topic_title}), the topic
+    description ({topic_description}), the document (or snippet) title ({doc_title}), and 
+    the document (or snippet) contents ({doc_content}).
+    """
+    
+    def __init__(self, topic, user_context, prompt_file, prompt_file_old, result_type_str, provider = 'ollama', model = 'mistral', temperature = 0.0, verbose = False):
+        """
+
+        """
+        super(LangChainTextClassifier_based_on_contrastive_Context, self).__init__(topic, user_context)
+        self.updating = False
+        prompt_template = ""
+        with open(prompt_file,'r') as prompt:
+            prompt_template = prompt.read()
+        self._template = prompt_template + """\n\n{format_instructions}\n"""
+
+        prompt_template_old = ""
+        with open(prompt_file_old,'r') as prompt:
+            prompt_template_old = prompt.read()
+        self._template_old = prompt_template_old + """\n\n{format_instructions}\n"""
+        
+        self._result_schema = result_schema_dict[result_type_str]
+        
+        self._output_parser = StructuredOutputParser.from_response_schemas(self._result_schema)
+
+        format_instructions = self._output_parser.get_format_instructions()
+        log.debug(f'init(): {format_instructions}')
+        self._prompt = PromptTemplate(
+            template=self._template,
+            input_variables=["topic_title", "topic_description", "doc_title", "doc_content","summarized_relevant_documents", "summarized_irrelevant_documents"],
+            partial_variables={"format_instructions": format_instructions})
+        
+        self._prompt_old = PromptTemplate(
+            template=self._template_old,
+            input_variables=["topic_title", "topic_description", "doc_title", "doc_content"],
+            partial_variables={"format_instructions": format_instructions}
+        )
+        self._llm = LangChainWrapper(self._prompt, provider, model, temperature, verbose)
+        self._llm_old = LangChainWrapper(self._prompt_old, provider, model, temperature, verbose)
+
+    def is_relevant(self, document):
+        """
+        """
+        doc_title = " ".join(clean_html(document.title))
+        doc_content = " ".join(clean_html(document.content))
+        topic_title = self._topic.title
+        topic_description  = self._topic.content
+
+        relevant_summary = self._user_context.get_summary_of_relevant_documents()
+        irrelevant_summary = self._user_context.get_summary_of_irrelevant_documents()
+
+        if relevant_summary is None and irrelevant_summary is None:
+            out = self._llm_old.generate_response(self._output_parser,{ 'topic_title': topic_title, 'topic_description': topic_description, 'doc_title': doc_title, 'doc_content': doc_content},self._result_schema)
+        elif relevant_summary is None and irrelevant_summary is not None:
+            out = self._llm.generate_response(self._output_parser,{ 'topic_title': topic_title, 'topic_description': topic_description, 'doc_title': doc_title, 'doc_content': doc_content ,'summarized_relevant_documents':"None found yet", 'summarized_irrelevant_documents':irrelevant_summary},self._result_schema)
+        elif relevant_summary is not None and irrelevant_summary is None:
+            out = self._llm.generate_response(self._output_parser,{ 'topic_title': topic_title, 'topic_description': topic_description, 'doc_title': doc_title, 'doc_content': doc_content ,'summarized_relevant_documents':relevant_summary, 'summarized_irrelevant_documents':"None found yet"},self._result_schema)
+        else:
+            out = self._llm.generate_response(self._output_parser,{ 'topic_title': topic_title, 'topic_description': topic_description, 'doc_title': doc_title, 'doc_content': doc_content ,'summarized_relevant_documents':relevant_summary, 'summarized_irrelevant_documents':irrelevant_summary},self._result_schema)
+
+        return out['relevant']

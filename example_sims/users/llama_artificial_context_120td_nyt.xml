@@ -1,0 +1,52 @@
+<userConfiguration id="llama-artificial-120td" type="SearchUser">
+
+    <queryGenerator class="LangChainQueryGenerator_based_on_full_TREC_Context">
+        <attribute name="stopword_file" type="string" value="../example_data/terms/stopwords.txt" is_argument="true" />
+        <attribute name="prompt_file" type="string" value="../example_data/prompts/query_generator_artificial_context.txt" is_argument="true" />
+        <attribute name="provider" type="string" value="ollama" is_argument="true" />
+        <attribute name="model" type="string" value="llama3.3" is_argument="true" />
+        <attribute name="verbose" type="boolean" value="True" is_argument="true" />
+    </queryGenerator>
+
+	<textClassifiers>
+
+		<snippetClassifier class="LangChainTextClassifier_Snippet_default_true">
+            <attribute name="prompt_file" type="string" value="../example_data/prompts/default_snippet.txt" is_argument="false" />			
+			<attribute name="result_type_str" type="string" value="SnippetResponse" is_argument="false" />
+			<attribute name="provider" type="string" value="ollama" is_argument="false" />
+			<attribute name="model" type="string" value="llama3.3" is_argument="false" />
+		</snippetClassifier>
+
+		<documentClassifier class="LangChainTextClassifier">
+	        <attribute name="prompt_file" type="string" value="../example_data/prompts/default_document.txt" is_argument="true" />
+			<attribute name="result_type_str" type="string" value="DocumentResponse" is_argument="true" />
+			<attribute name="provider" type="string" value="ollama" is_argument="true" />
+			<attribute name="model" type="string" value="llama3.3" is_argument="true" />
+		</documentClassifier>
+	</textClassifiers>
+		
+	<stoppingDecisionMaker class="TimeDecisionMaker">
+		<attribute name="timeout_threshold" type="integer" value="120" is_argument="true" />
+	</stoppingDecisionMaker>
+	
+	
+	<logger class="FixedCostLogger">
+		<attribute name="time_limit" type="integer" value="1200" is_argument="true" />
+		<attribute name="query_cost" type="integer" value="10" is_argument="true" />
+		<attribute name="document_cost" type="integer" value="20" is_argument="true" />
+		<attribute name="snippet_cost" type="integer" value="0" is_argument="true" />
+		<attribute name="serp_results_cost" type="integer" value="5" is_argument="true" />
+		<attribute name="mark_document_cost" type="integer" value="3" is_argument="true" />
+	</logger>
+	
+	<userContext class="Memory">
+		<attribute name="relevance_revision" type="integer" value="1" is_argument="false" />
+		<attribute name="summary_boolean" type="boolean" value="False" is_argument="true" />
+		<attribute name="query_after_SERP" type="boolean" value="False" is_argument="true" />
+	</userContext>
+	
+	<serpImpression class="SimpleSERPImpression">
+		<attribute name="qrel_file" type="string" value="../example_data/nyt/nyt_qrels" is_argument="true" />
+	</serpImpression>
+	
+</userConfiguration>

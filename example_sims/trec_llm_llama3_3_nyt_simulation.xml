@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='utf-8'?>
+<simulationConfiguration id="nyt-bm25">
+
+	<output baseDirectory="../example_sims/output_nyt/" saveInteractionLog="true" saveRelevanceJudgments="true" trec_eval="false" />
+
+	<topics>
+                <topic id="345" filename="../example_data/nyt/topics/topic.345" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="426" filename="../example_data/nyt/topics/topic.426" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="355" filename="../example_data/nyt/topics/topic.355" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="414" filename="../example_data/nyt/topics/topic.414" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="690" filename="../example_data/nyt/topics/topic.690" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="344" filename="../example_data/nyt/topics/topic.344" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="378" filename="../example_data/nyt/topics/topic.378" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="397" filename="../example_data/nyt/topics/topic.397" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="435" filename="../example_data/nyt/topics/topic.435" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="646" filename="../example_data/nyt/topics/topic.646" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="394" filename="../example_data/nyt/topics/topic.394" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="433" filename="../example_data/nyt/topics/topic.433" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="393" filename="../example_data/nyt/topics/topic.393" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="379" filename="../example_data/nyt/topics/topic.379" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="404" filename="../example_data/nyt/topics/topic.404" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="341" filename="../example_data/nyt/topics/topic.341" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="347" filename="../example_data/nyt/topics/topic.347" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="389" filename="../example_data/nyt/topics/topic.389" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="363" filename="../example_data/nyt/topics/topic.363" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="419" filename="../example_data/nyt/topics/topic.419" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="614" filename="../example_data/nyt/topics/topic.614" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="372" filename="../example_data/nyt/topics/topic.372" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="677" filename="../example_data/nyt/topics/topic.677" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="427" filename="../example_data/nyt/topics/topic.427" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="626" filename="../example_data/nyt/topics/topic.626" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="375" filename="../example_data/nyt/topics/topic.375" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="325" filename="../example_data/nyt/topics/topic.325" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="423" filename="../example_data/nyt/topics/topic.423" qrelsFilename="../example_data/nyt/nyt_qrels" />                
+                <topic id="400" filename="../example_data/nyt/topics/topic.400" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="422" filename="../example_data/nyt/topics/topic.422" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="354" filename="../example_data/nyt/topics/topic.354" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="353" filename="../example_data/nyt/topics/topic.353" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="307" filename="../example_data/nyt/topics/topic.307" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="330" filename="../example_data/nyt/topics/topic.330" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="620" filename="../example_data/nyt/topics/topic.620" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="321" filename="../example_data/nyt/topics/topic.321" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="310" filename="../example_data/nyt/topics/topic.310" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="416" filename="../example_data/nyt/topics/topic.416" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="336" filename="../example_data/nyt/topics/topic.336" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="356" filename="../example_data/nyt/topics/topic.356" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="399" filename="../example_data/nyt/topics/topic.399" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="362" filename="../example_data/nyt/topics/topic.362" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="436" filename="../example_data/nyt/topics/topic.436" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="408" filename="../example_data/nyt/topics/topic.408" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="442" filename="../example_data/nyt/topics/topic.442" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="445" filename="../example_data/nyt/topics/topic.445" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="367" filename="../example_data/nyt/topics/topic.367" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="439" filename="../example_data/nyt/topics/topic.439" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="350" filename="../example_data/nyt/topics/topic.350" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                <topic id="443" filename="../example_data/nyt/topics/topic.443" qrelsFilename="../example_data/nyt/nyt_qrels" />
+                
+        </topics>
+                       
+
+	<users>
+                <user configurationFile="../example_sims/users/llama_minimal_context_120td_nyt.xml" />
+                <user configurationFile="../example_sims/users/llama_artificial_context_120td_nyt.xml" />
+                <user configurationFile="../example_sims/users/llama_irreldoc_120td_nyt.xml" />
+                <user configurationFile="../example_sims/users/llama_reldoc_120td_nyt.xml" />
+                <user configurationFile="../example_sims/users/llama_contrastive_120td_nyt.xml" />
+                <user configurationFile="../example_sims/users/llama_contrastive_no_trec_120td_nyt.xml" />
+                <!--
+                When rerunning all experiments the Artificial User needs to be completed first and the jupyter notebook "create_predetermined_queries.ipynb" needs to be executed 
+                to generate the queries that are used for the predetermined rule-based users. However, the queries from the already 
+                executed experiments are already present and can be used as well. 
+                -->
+                <user configurationFile="../example_sims/users/llama_random_user_120td_nyt.xml" />
+                <user configurationFile="../example_sims/users/llama_random_user_120td_nyt_pre.xml" />
+                
+        </users>
+        
+         
+        
+        <searchInterface class="PyTerrierSearchInterface">
+               
+                <attribute name="index_or_dir" type="string" value="../datasets/indices/nyt" is_argument="true" />
+                
+                <attribute name="text_field" type="string" value="body" is_argument="true" />
+                <attribute name="title_field" type="string" value="headline" is_argument="true" />
+                <attribute name="wmodel" type="string" value="BM25" is_argument="true" />
+                <attribute name="memory" type="boolean" value="false" is_argument="true" />
+	</searchInterface>
+
+        
+        
+</simulationConfiguration>

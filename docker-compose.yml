@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  simiir3_newest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspace:cached
+    container_name: contrastive_prompting_with_SimIIR3
+
+          
+    
+
