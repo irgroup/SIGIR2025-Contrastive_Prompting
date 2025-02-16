@@ -16,7 +16,7 @@ For creating the necessary environment to be able to use this Repository, you ca
 
 ```shell
 
-docker-compose -up
+docker-compose up
 
 ```
 
