@@ -18,7 +18,7 @@ class LangChainQueryGenerator_based_on_TREC_Title(BaseQueryGenerator):
     Does not use any information outside of the topic. 
     """
     def __init__(self, stopword_file, prompt_file, n=3,provider='ollama',model='mistral',temperature=1.0,verbose=False, background_file=[]):
-        super(LangChainQueryGenerator_with_minimal_Context, self).__init__(stopword_file, background_file=background_file, allow_similar=False)
+        super(LangChainQueryGenerator_based_on_TREC_Title, self).__init__(stopword_file, background_file=background_file, allow_similar=False)
         prompt_template = ""
         with open(prompt_file,'r') as prompt:
             prompt_template = prompt.read()

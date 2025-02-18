@@ -43,6 +43,7 @@
 		<attribute name="relevance_revision" type="integer" value="1" is_argument="false" />
 		<attribute name="summary_boolean" type="boolean" value="True" is_argument="true" />
 		<attribute name="summary_Type" type="string" value="contrastive" is_argument="true" />
+		<attribute name="query_after_SERP" type="boolean" value="True" is_argument="true" />
 	</userContext>
 	
 	<serpImpression class="SimpleSERPImpression">
