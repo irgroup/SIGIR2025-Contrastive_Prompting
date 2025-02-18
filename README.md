@@ -5,7 +5,7 @@ Title:
 ```
 Evaluating Contrastive Feedback for Effective User Simulations
 ```
-![Experimental Setup](../figures/Experimental_setup.png)
+![Experimental Setup](../figures/Experimental_Setup_horizonal_new.png)
 
 This repository is corresponding to the Short Paper with the Title "Evaluating Contrastive Feedback for Effective User Simulations" submitted for the SIGIR 2025 Short Paper Track.
 The code is a slightly adapted form of the implementation of the SimIIR-3 framework. 
