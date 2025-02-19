@@ -28,7 +28,7 @@ Due to the licensing of the Core17 and Core18 datasets used, these were not incl
 - `./datasets/indices/nyt`
 - `./datasets/indices/wapo`
 
-The original implementation of the Framework can be found ![here]('https://github.com/simint-ai/simiir-3'). 
+The original implementation of the Framework can be found ![here](https://github.com/simint-ai/simiir-3). 
 
 ## License
 
